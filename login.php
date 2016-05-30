@@ -9,12 +9,14 @@ session_start();
 <head>
 <?php require_once("connection.php");  
 
-     	//	require_once('recursos.php') 
-     		 ;
+     		require_once('recursos.php') ;
+			
     	?>
 	
 	
 </head>
+<body>
+
 <div align="center">
 	 <h6><img src="imagenes/logova.png" width="345" height="88" ></h6>
 <?php
@@ -26,75 +28,68 @@ header("Location: intropage.php");
  
 if(isset($_POST["login"])){
  
-if(!empty($_POST['email']) && !empty($_POST['clave'])) {
- $email=$_POST['email'];
- $password=$_POST['clave'];
+	if(!empty($_POST['email']) && !empty($_POST['clave'])) {
+		 $email=$_POST['email'];
+		 $password=$_POST['clave'];
  
-$query =mysql_query("SELECT * FROM usuario WHERE email='".$email."' AND clave='".$password."'");
+			$query =mysql_query("SELECT * FROM usuario WHERE email='".$email."' AND clave='".$password."'");
  
-$numrows=mysql_num_rows($query);
- if($numrows!=0)
+			$numrows=mysql_num_rows($query);
+ 				if($numrows!=0){
+ 							while($row=mysql_fetch_assoc($query)){
+ 									$dbusername=$row['email'];
+ 									$dbpassword=$row['clave'];
+																 }
  
-{
- while($row=mysql_fetch_assoc($query))
- {
- $dbusername=$row['email'];
- $dbpassword=$row['clave'];
- }
+							if($email == $dbusername && $password == $dbpassword){
  
-if($email == $dbusername && $password == $dbpassword)
- 
-{
- 
- $_SESSION['session_username']=$email;
- 
-
- header("Location: intropage.php");
- }
- } else {
- 
-$message= "Nombre de usuario ó contraseña invalida!";
- }
- 
-} else {
- $message = "Todos los campos son requeridos!";
-}
+ 										$_SESSION['session_username']=$email; 
+ 										header("Location: intropage.php");
+																				 }
+								 } 
+ 							else { 
+								$message= "Nombre de usuario ó contraseña invalida!";
+																			 }
+							} 
+				else {
+ 					$message = "Todos los campos son requeridos!";
+															}
 }
 ?>
  
- <div class="container mlogin">
- <div id="login">
- <h1>Logueo</h1>
-<form name="loginform" id="loginform" action="" method="POST">
- <p>
- <label for="user_login">Nombre De Usuario<br />
- <input type="text" name="email" id="email" class="input" value="" size="20" /></label>
- </p>
- <p>
- <label for="user_pass">Contraseña<br />
- <input type="password" name="clave" id="clave" class="input" value="" size="20" /></label>
- </p>
- <p class="submit">
- <input type="submit" name="login" class="button" value="Entrar" />
- </p>
- <p class="regtext">No estas registrado? <a href="register.php" >Registrate Aquí</a>!</p>
-</form>
  
-</div>
+ <h1>Logueoooo</h1>
+<form name="loginform" id="loginform" action="" method="POST" target="_top">
+ 
+ <label for="usuario">Nombre De Usuario<br />
+ <input type="text" name="email" id="email" class="input" value="" size="20" /></label>
+ 
+ 
+ <label for="contraseña">Contraseña<br />
+ <input type="password" name="clave" id="clave" class="input" value="" size="20" /></label>
+ 
+ 
+ <input type="submit" name="login" class="button" value="Entrar" />
+ 
+
+</form>
+  <p class="regtext">No estas registrado? <a href="register.php" target="_top" >Registrate Aquí</a>!</p>
+
  
 </div>
  <div data-role="footer" data-theme="a" data-position="fixed" >
 			
-			<div data-role="controlgroup" data-type="horizontal" style="text-align:center; ">
+			<div style="text-align:center; ">
 
 				  Indevelopers
 
 			</div>
 			
-            <a href="ayuda/Usuario.pdf" data-icon="alert" style="text-align:left" >Ayuda</a>
+            <a href="ayuda/Usuario.pdf" data-icon="alert" data-ajax="false" style="text-align:left" >Ayuda</a>
      </div>
  
  
- <?php if (!empty($message)) {echo "<p class=\"error\">" . "MENSAGE: ". $message . "</p>";} ?>
+ <?php if (!empty($message)) {echo "<p class=\"error\">" . "Atencion: ". $message . "</p>";}  ?>
+ 
 </body>
 </html>
