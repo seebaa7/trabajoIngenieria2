@@ -13,7 +13,7 @@ session_start();
 			
     	?>
 	
-	
+	<link rel="icon" type="image/ico" href="favicon.ico">
 </head>
 <body>
 

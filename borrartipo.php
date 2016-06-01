@@ -22,6 +22,7 @@
 			 
 <html> 
 <head>
+<link rel="icon" type="image/ico" href="favicon.ico">
 <title></title>
 </head>
 <body>
