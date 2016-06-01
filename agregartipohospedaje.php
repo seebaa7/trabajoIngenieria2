@@ -9,6 +9,11 @@ require_once("recursos.php");
 <html>
 <head>
 <title>AgregarTipoDeHospedaje</title>
+
+
+
+</head>
+<body>
 <?php	
 
 
@@ -21,14 +26,10 @@ if($ok==0){
 	mysql_query(" INSERT INTO couchinn.tipo (idt, nombre)
                VALUES (NULL,'$tipo')");}
 	else{
-		echo "El nombre del tipo ya esta en uso";
+		$message = "El nombre del tipo ya esta en uso";
 	}
 }
 ?>
-
-
-</head>
-<body>
  
 <form name="volver" action="intropage.php" target="_top" method="post "> 
 <input type="submit"   data-icon="back"  align="left" value="Volver atras" >	
@@ -40,6 +41,7 @@ Ingrese nuevo tipo:
 <input type="text" name="nuevotipo" id="nuevotipo"><br>
 <input type="submit" value="confirmar">
 </form>
+<?php if (!empty($message)) {echo "<p class=\"error\">" . "Atencion: ". $message . "</p>";} ?>
 <div data-role="footer" data-theme="a" data-position="fixed" >
 			
 			<div data-role="controlgroup" data-type="horizontal" style="text-align:center;">

@@ -1,3 +1,8 @@
+
+<?php
+session_start();
+?>
+ 
 <?php require_once("connection.php"); 
 	 require_once('recursos.php');
      		 
@@ -42,12 +47,12 @@ $result=mysql_query($sql);
 }
 ?>
  
-<?php if (!empty($message)) {echo "<p class=\"error\">" . "Mensaje: ". $message . "</p>";} ?>
+
  
 <div class="container mregister">
  <div id="login">
  <h1>Registrar</h1>
-<form name="registerform" id="registerform" action="register.php" method="post">
+<form name="registerform" id="registerform" target="_top" action="register.php" method="post" >
  <p>
  <label for="user_login">Nombre <br />
  <input type="text" name="nombre" id="nombre" class="input" size="32" value="" /></label>
@@ -78,6 +83,7 @@ $result=mysql_query($sql);
  </p>
  
  <p class="regtext">Ya tienes una cuenta? <a href="login.php" >Entra Aquí!</a>!</p>
+ <?php if (!empty($message)) {echo "<p class=\"error\">" . "Mensaje: ". $message . "</p>";} ?>
 </form>
  
  </div>
