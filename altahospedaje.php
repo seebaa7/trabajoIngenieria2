@@ -19,8 +19,8 @@
 			   $precio = $_GET['precio'];
 			   $tipo = $_GET['tipo'];
 			   $numero = $_GET['numero'];
-               
-			   mysql_query("INSERT INTO `hospedaje`(`idh`, `idu`, `numero`, `capacidad`, `calle`, `ciudad`, `piso`, `provincia`, `idp`, `idt`, `precio`) VALUES ('','','$numero','$capacidad','$calle','$ciudad','$piso','$provincia','$pais','$tipo','$precio')" , $conexion); 
+               $idu = $_SESSION['session_username'];
+			   mysql_query("INSERT INTO `hospedaje`(`idh`, `idu`, `numero`, `capacidad`, `calle`, `ciudad`, `piso`, `provincia`, `idp`, `idt`, `precio`) VALUES ('','$idu','$numero','$capacidad','$calle','$ciudad','$piso','$provincia','$pais','$tipo','$precio')" , $conexion); 
                $datos=mysql_query("select  nombre,idt from tipo where borrado = 0" ,$conexion) or
                         die("Problemas en el select:".mysql_error());
 			  
