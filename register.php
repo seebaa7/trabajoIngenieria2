@@ -6,6 +6,10 @@ session_start();
 <head>
 </head>
  <body>
+ <br>
+ <div data-role="header" data-theme="a" data-position="inline"  >
+ <a href="index1.php" data-icon="home" style="text-align:left" target="_top">Inicio</a>
+ </div>
  <div align="center" >
  <h6><img src="imagenes/logova.png" width="345" height="88" ></h6>
  </div>
@@ -59,7 +63,7 @@ $result=mysql_query($sql);
 <div class="container mregister">
  <div id="login">
  <h1>Registrar</h1>
-<form name="registerform" id="registerform" target="_top" action="register.php" method="post" >
+<form name="registerform" id="registerform" target="_top" action="intropage.php" method="post" >
  <p>
  <label for="user_login">Nombre <br />
  <input type="text" name="nombre" id="nombre" class="input" size="32" value="" /></label>
@@ -87,14 +91,14 @@ $result=mysql_query($sql);
  
  <p>
  <label for="user_pass">Contraseña<br />
- <input type="text" name="contraseña" id="contraseña" class="input" value="" size="32" /></label>
+ <input type="text" name="clave" id="clave" class="input" value="" size="32" /></label>
  </p>
  
 <p class="submit">
  <input type="submit" name="register" id="register" class="button" value="Registrar" />
  </p>
  
- <p class="regtext">Ya tienes una cuenta? <a href="login.php" >Entra Aquí!</a>!</p>
+ <p class="regtext">Ya tienes una cuenta? <a href="login.php" target="_top" >Entra Aquí!</a>!</p>
  <?php if (!empty($message)) {echo "<p class=\"error\">" . "Mensaje: ". $message . "</p>";} ?>
 </form>
 <?php 

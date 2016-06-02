@@ -1,22 +1,24 @@
 
 <?php
-
- 
-               $conexion=mysql_connect("localhost","root","") or 
-                       die("Problemas en la conexion");
-
-               mysql_select_db("couchinn",$conexion)or die("Problemas en la selección de la base de datos");
+    session_start(); 
+  if(!isset($_SESSION['session_username'])){
+  header("location: login.php");}
+             require_once("recursos.php");
+			require_once("connection.php");
+			
+		
+              
                
-               session_start(); 
+           
 			   
       
 			   
 			   
                $idtipo = $_GET['tipoaborrar'];
                mysql_query("UPDATE couchinn.tipo SET tipo.borrado = 1
-            WHERE tipo.idt = $idtipo " , $conexion); 
+            WHERE tipo.idt = $idtipo " ); 
 			   			
-               $datos=mysql_query("select  nombre,idt from tipo where borrado = 0" ,$conexion) or
+               $datos=mysql_query("select  nombre,idt from tipo where borrado = 0") or
                         die("Problemas en el select:".mysql_error());
                ?>
 			 
@@ -25,16 +27,22 @@
 <title></title>
 </head>
 <body>
-               <div data-role = "header" data-theme = "a" data-position = "fixed">
+<?php include("header.php"); ?> 
+              	<div align="left "> 
+	<div data-role="controlgroup" data-type="horizontal" >
+	<form  name="choice" action="intropage.php" target="_top" method="post">
+   <input type="submit" value="Volver Al Menu Anterior"  data-icon="back"> </form> </div> </div>
                <form method="get" action="borrartipo.php" > 
                 Seleccione un tipo<br>
                 Tipos:
-                 <select name="tipoaborrar" style="width: 100px; margin:8px;" >  
+                 <select name="tipoaborrar" >  
                     <?php while ($dat = mysql_fetch_array($datos)) { ?>
                             <option value ="<?php echo $dat['idt']; ?>"><?php echo $dat['nombre']; ?></option> <?php } ?>							
                  </select>
                  <input type="submit" value="Eliminar" >
             </form>
-			</div>
+			</div>	
+		<div align="left">			
+<?php include ("footer.php") ; ?>			 </div>
 </body>
 </html>

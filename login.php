@@ -55,13 +55,12 @@ if(isset($_POST["login"])){
  					$message = "Todos los campos son requeridos!";
 															}
 }
-if(isset($_GET['ENVIADO'])){
-		            	echo"<h3>Correo enviado correctamente, verifique su bandeja de entrada para poder restablecer su contraseña.</h3>";
+     if(isset($_GET['ENVIADO'])){	echo"<h3>Correo enviado correctamente, verifique su bandeja de entrada para poder restablecer su contraseña.</h3>";
 		        			
 		 		}
 ?>
  
- 
+
  <h1>Logueo</h1>
 <form name="loginform" id="loginform" action="" method="POST" target="_top">
  

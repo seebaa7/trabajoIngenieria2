@@ -1,21 +1,25 @@
-<?php
-
-$conexion=mysql_connect("localhost","root","") or 
-                       die("Problemas en la conexion");
-
-               mysql_select_db("couchinn",$conexion)or die("Problemas en la selección de la base de datos");
-               require_once ("recursos.php");
-               session_start(); 
-			   
-$datos = mysql_query("Select idh, provincia, ciudad, calle, numero, precio from hospedaje", $conexion);
-?>
 <html>
  <head>
         <title></title>
-    </head>
+    </head><?php
+
+			   require_once('connection.php');
+               require_once ("recursos.php");
+               session_start(); 
+			   if(!isset($_SESSION["session_username"])) {
+ header("location:login.php");
+}
+$datos = mysql_query("Select idh, provincia, ciudad, calle, numero, precio from hospedaje");
+?>
+
     <body>
-	<div data-role = "header" data-theme = "a" data-position = "fixed">
-	<form method="get" action="detallehosp.php">
+	<?php include('header.php');?>
+	<div align="left "> 
+	<div data-role="controlgroup" data-type="horizontal" >
+	<form  name="choice" action="intropage.php" target="_top" method="post">
+   <input type="submit" value="Volver Al Menu Anterior"  data-icon="back"> </form> </div> </div>
+	
+	<form method="get" action="detallehosp.php" target="_top">
 	<?php
 	while($dat=mysql_fetch_array($datos)){
 				echo "Provincia:"; echo $dat['provincia']; echo " ";
@@ -30,5 +34,7 @@ $datos = mysql_query("Select idh, provincia, ciudad, calle, numero, precio from 
 			}
 	?>
 	</form>
+	<div align="left">			
+<?php include ("footer.php") ; ?>			 </div>
 	</body>
 	</html>

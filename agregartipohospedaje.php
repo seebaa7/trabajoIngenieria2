@@ -31,7 +31,7 @@ if($ok==0){
 }
 ?>
  
-<form name="volver" action="intropage.php" target="_top" method="post "> 
+<form name="volver" action="administrar.php" target="_top" method="post "> 
 <input type="submit"   data-icon="back"  align="left" value="Volver atras" >	
 </form>
 <div align="center">
@@ -49,7 +49,8 @@ Ingrese nuevo tipo:
 				  Indevelopers
 
 			</div>
-            <a href="ayuda/Usuario.pdf" data-icon="alert" style="text-align:left" >Ayuda</a>
+            <div align="left">			
+<?php include ("footer.php") ; ?>			 </div>
             </div>		
 	
 </body>

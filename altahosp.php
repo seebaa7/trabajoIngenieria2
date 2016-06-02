@@ -1,13 +1,12 @@
 <?php
-$conexion=mysql_connect("localhost","root","") or 
-                       die("Problemas en la conexion");
-mysql_select_db("couchinn",$conexion)or die("Problemas en la selección de la base de datos");
+require_once("connection.php");
+			   
 session_start();  
-               $tipos=mysql_query("select  nombre, idt from tipo where borrado = 0" ,$conexion) or
+               $tipos=mysql_query("select  nombre, idt from tipo where borrado = 0") or
                         die("Problemas en el select:".mysql_error());
-               $pais=mysql_query("select nombre from paises",$conexion) or
+               $pais=mysql_query("select nombre from paises") or
                         die("Problemas en el select:".mysql_error());
-               $provincia=mysql_query("select nombre from provincia",$conexion) or
+               $provincia=mysql_query("select nombre from provincia") or
                         die("Problemas en el select:".mysql_error());
 						require_once ("recursos.php");
 ?>
@@ -16,8 +15,13 @@ session_start();
         <title></title>
     </head>
     <body>
-	<div data-role = "header" data-theme = "a" data-position = "fixed">
-	<form method="get" action="altahospedaje.php"> 
+	<?php include("header.php") ?> 
+	<div align="left ">
+	<div data-role="controlgroup" data-type="horizontal" >
+	<form  name="choice" action="administrar.php" target="_top" method="post">
+   <input type="submit" value="Volver Al Menu Anterior"  data-icon="back"> </form> </div> </div>
+   
+	<form  method="get" action="altahospedaje.php"> 
                  Ciudad:
                  <input type="text" name="ciudad" id="ciudad" >
                  Pais:
@@ -33,7 +37,7 @@ session_start();
                  Calle:
                  <input  type="text" name="calle" id="calle">
 				 Numero:
-				 <input type="text" name="numero" id="calle>
+				 <input type="text" name="numero" id="calle">
 				 Capacidad:
 				 <input type="text" name="capacidad" id="capacidad">
                 Piso(Completar con n/a en caso de que no aplique):
@@ -48,6 +52,7 @@ session_start();
 				                 <input type="submit" value="Agregar" >
         </form> 
         </div>
+		<?php include ("footer.php") ; ?>
         </body>
     
 </html>

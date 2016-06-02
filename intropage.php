@@ -9,6 +9,7 @@
 	<?php
      		 require_once('connection.php');
      		 require_once('recursos.php');
+			 include('header.php');
     	?>
 
 </head>
@@ -27,12 +28,16 @@ $id=$_SESSION['session_username'];
 ?>
 
 <body >
-<div align="center">
-	 <h6><img src="imagenes/logova.png" width="345" height="88" ></h6>
+
      </div>
 	<div data-role="header" data-theme="a" data-position="fixed">
 			 <?php if ($numrows==1) { ?>	 <form name="admin" action="administrar.php" target="_top" method="post">
    <input type="submit" value="Administrar"  data-icon="gear">
+   
+			 </form> <?php }?>
+			 	 <?php if ($numrows==0) { ?>	 <form name="user" action="modificarusuario.php" target="_top" method="post">
+   <input type="submit" value="ModificarPerfil"  data-icon="gear">
+   
 			 </form> <?php }?>
 			</div>
 
@@ -65,11 +70,12 @@ $id=$_SESSION['session_username'];
 	 
 <div>
       <ul>
-        <li><a href="buscarhospedaje.php">Buscar Hospedaje</a></li>
-        <li><a href="ofrecerhospedaje.php">Ofrecer Hospedaje</a></li>
+        <li><a href="listadohospedajes.php">Listado De Hospedajes </a></li>
+		<li><a href="altahosp.php" > Subir Hospedaje  </a></li>
+        
         <?php if ($numrows==0) { ?>	<li><a href="contacto.php">Contactenos</a></li> <?php } ?>
         <?php if ($numrows==0) { ?>		<li><a href="acercadecouchinn.php">Acerca de Couchinn</a></li> <?php } ?>
-        <?php if ($numrows==1) { ?>		 <li><a href="agregartipohospedaje.php">AgregarTipoHospedaje</a></li> <?php } ?>
+        <?php if($numrows==0) { ?>		<li><a href="validartarjeta.php">Pasar a premium</a></li> <?php } ?>
       </ul>
       <p>&nbsp;</p>
       <p>&nbsp;</p>

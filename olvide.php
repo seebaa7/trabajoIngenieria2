@@ -33,6 +33,7 @@
 		  				   	echo"<h3>El mail no corresponde a ningun usuario.</h3>";		        			
 		 				}
 		 	?>
+
 			<form action="verificoMail.php" method="post" data-ajax="false">
 				<label for="correo" >Correo:</label>
 				<input type="email" name="correo" id="correo" placeHolder="nombre@ejemplo.com">

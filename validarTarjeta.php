@@ -8,6 +8,7 @@
 	<head>
 		
 		<?php
+			
      		 require_once('connection.php');
      		 require_once('recursos.php');
     	?>
@@ -16,29 +17,24 @@
 	
 	<body>
 
-	
+	 
+	 
 	<div data-role="page" id="administrar">
-
+<div align= "center "  <h6><img src="imagenes/logova.png" width="345" height="88" ></h6> </div>
 		
 		<div data-role="header" data-theme="a" data-position="fixed">
 		<br>
 		<br>
 		<?php
 				if(isset($_SESSION['session_username'])){
-					echo'<a href="modificarMisDatos.php" target="_top" data-icon="gear" >'.$_SESSION['session_username'].'</a>';
+					echo'<a href="modificarMisDatos.php"  target="_top" data-icon="gear" >'.$_SESSION['session_username'].'</a>';
 					echo'<a href="logout.php"  target="_top" data-icon="delete" >Cerrar session</a>';
+					echo'<a href="index1.php" target="_top" data-icon="home"  align="center" > Volver a Inicio </a> ' ;
 
 				}
 			?>
 			
-			<div data-role="navbar">
-				<ul>
-					<li><a target="_top" href="index1.php">Inicio</a></li>
-					
-              
-
-				</ul>	
-			</div>
+			
 		</div>
 	   
 		<div data-role="content">
@@ -78,8 +74,8 @@
 			
 			</ul>
 
-			<?php include('footer.php');
-				?>
+			<div align="left">			
+<?php include ("footer.php") ; ?>			 </div>
 		
 	</div>
 		
