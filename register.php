@@ -2,7 +2,13 @@
 <?php
 session_start();
 ?>
- 
+<html>
+<head>
+</head>
+ <body>
+ <div align="center" >
+ <h6><img src="imagenes/logova.png" width="345" height="88" ></h6>
+ </div>
 <?php require_once("connection.php"); 
 	 require_once('recursos.php');
      		 
@@ -13,12 +19,13 @@ session_start();
  
 if(isset($_POST['register'])){
  
-if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['apellido']) && !empty($_POST['dni'])&& !empty($_POST['telefono'])) {
+if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['apellido']) && !empty($_POST['dni'])&& !empty($_POST['telefono'])&& !empty($_POST['clave'])) {
  $telefono=$_POST['telefono'];
  $email=$_POST['email'];
  $nombre=$_POST['nombre'];
  $apellido=$_POST['apellido'];
  $dni=$_POST['dni'];
+ $clave=$_POST['clave'];
  
  
  $query=mysql_query("SELECT * FROM usuario WHERE email='".$email."'");
@@ -26,7 +33,7 @@ if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['apellid
  
  if($numrows==0)
  {
- $sql="INSERT INTO usuario(email, nombre, apellido, telefono, dni) VALUES ('$email','$nombre','$apellido','$telefono','$dni')";
+ $sql="INSERT INTO usuario(email, nombre, apellido, telefono, dni,clave) VALUES ('$email','$nombre','$apellido','$telefono','$dni','$clave')";
  
  
 $result=mysql_query($sql);
@@ -78,6 +85,11 @@ $result=mysql_query($sql);
  <input type="text" name="apellido" id="apellido" class="input" value="" size="32" /></label>
  </p>
  
+ <p>
+ <label for="user_pass">Contraseña<br />
+ <input type="text" name="contraseña" id="contraseña" class="input" value="" size="32" /></label>
+ </p>
+ 
 <p class="submit">
  <input type="submit" name="register" id="register" class="button" value="Registrar" />
  </p>
@@ -85,8 +97,12 @@ $result=mysql_query($sql);
  <p class="regtext">Ya tienes una cuenta? <a href="login.php" >Entra Aquí!</a>!</p>
  <?php if (!empty($message)) {echo "<p class=\"error\">" . "Mensaje: ". $message . "</p>";} ?>
 </form>
+<?php 
+include("footer.php");
+?>
  
  </div>
  </div>
  
  <?php  ?>
+</body>

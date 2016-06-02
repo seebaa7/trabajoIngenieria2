@@ -25,12 +25,11 @@
                ?>
 			 
 <html> 
-<link rel="icon" type="image/ico" href="favicon.ico">
 <head>
 <title></title>
 </head>
 <body>
-               <div data-role = "header" data-theme = "a" data-position = "fixed">
+               
                <form method="get" action="modificartipo.php" > 
                 Seleccione el tipo a modificar:<br>
                 Tipos:
@@ -41,6 +40,6 @@
 				 <input type="text" name="nuevonombre" id="nuevonombre" >
                  <input type="submit" value="Modificar" >
             </form>
-			</div>
+			
 </body>
 </html>

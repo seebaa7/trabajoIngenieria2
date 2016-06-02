@@ -21,17 +21,17 @@
 <title></title>
 </head>
 <body>
- <div data-role = "header" data-theme = "a" data-position = "fixed">
+ 
                <form method="get" action="modificartipo.php" > 
                 Seleccione el tipo a modificar:<br>
                 Tipos:
                  <select name="tipoamodificar" style="width: 100px; margin:8px;" >  
                     <?php while ($dat = mysql_fetch_array($datos)) { ?>
-                            <option value ="<?php echo $dat['idt']; ?>"><?php echo $dat['nombre']; ?></option> <?php } ?>							
+                            <option value ="<?php echo $dat['idt']; ?>"><?php echo $dat['nombre']; ?></option> <?php } ?>					
                  </select>
 				 <input type="text" name="nuevonombre" id="nuevonombre" >
                  <input type="submit" value="Modificar" >
             </form>
-			</div>
+			
 </body>
 </html>

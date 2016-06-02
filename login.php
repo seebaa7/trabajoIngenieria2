@@ -13,7 +13,7 @@ session_start();
 			
     	?>
 	
-	<link rel="icon" type="image/ico" href="favicon.ico">
+	
 </head>
 <body>
 
@@ -55,10 +55,14 @@ if(isset($_POST["login"])){
  					$message = "Todos los campos son requeridos!";
 															}
 }
+if(isset($_GET['ENVIADO'])){
+		            	echo"<h3>Correo enviado correctamente, verifique su bandeja de entrada para poder restablecer su contraseña.</h3>";
+		        			
+		 		}
 ?>
  
  
- <h1>Logueoooo</h1>
+ <h1>Logueo</h1>
 <form name="loginform" id="loginform" action="" method="POST" target="_top">
  
  <label for="usuario">Nombre De Usuario<br />
@@ -71,22 +75,15 @@ if(isset($_POST["login"])){
  
  <input type="submit" name="login" class="button" value="Entrar" />
  
+			 	<a href='olvide.php'>Olvide mi contraseña</a>
 
 </form>
   <p class="regtext">No estas registrado? <a href="register.php" target="_top" >Registrate Aquí</a>!</p>
 
  
 </div>
- <div data-role="footer" data-theme="a" data-position="fixed" >
-			
-			<div style="text-align:center; ">
-
-				  Indevelopers
-
-			</div>
-			
-            <a href="ayuda/Usuario.pdf" data-icon="alert" data-ajax="false" style="text-align:left" >Ayuda</a>
-     </div>
+ <?php include('footer.php');
+				?>
  
  
  <?php if (!empty($message)) {echo "<p class=\"error\">" . "Atencion: ". $message . "</p>";}  ?>

@@ -7,7 +7,6 @@
 <?php require_once("recursos.php");   ?>
 	<meta charset="utf-8">
 	<title>CouchInn</title>
-	<link rel="icon" type="image/ico" href="favicon.ico">
 	
 </head>
 
