@@ -1,35 +1,45 @@
-
-<?php
-session_start();
-?>
+<! DOCTYPE HTML>
 <html>
 <head>
+<?php
+session_start();
+include("connection.php");             
+    ?>
+
+  <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0" />
+  <title > CouchInn </title>
+  <link rel="stylesheet" href="css/register.css" >
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/estilos.css"  />
+
+      <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
 </head>
- <body>
- <br>
- <div data-role="header" data-theme="a" data-position="inline"  >
- <a href="index1.php" data-icon="home" style="text-align:left" target="_top">Inicio</a>
- </div>
- <div align="center" >
- <h6><img src="imagenes/logova.png" width="345" height="88" ></h6>
- </div>
-<?php require_once("connection.php"); 
-	 require_once('recursos.php');
-     		 
-     		 ?>
-    	
- 
- <?php
+<body background="imagenes/fondo4.jpg">
+  <?php include("header.php"); ?>
+   
+ <section class="main container"> 
+        
+
+
+
+     <?php
  
 if(isset($_POST['register'])){
  
-if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['apellido']) && !empty($_POST['dni'])&& !empty($_POST['telefono'])&& !empty($_POST['clave'])) {
+if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['apellido']) && !empty($_POST['dni'])&& !empty($_POST['telefono'])&& !empty($_POST['contraseña'])) {
  $telefono=$_POST['telefono'];
  $email=$_POST['email'];
  $nombre=$_POST['nombre'];
  $apellido=$_POST['apellido'];
  $dni=$_POST['dni'];
- $clave=$_POST['clave'];
+ $clave=$_POST['contraseña'];
  
  
  $query=mysql_query("SELECT * FROM usuario WHERE email='".$email."'");
@@ -37,76 +47,104 @@ if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['apellid
  
  if($numrows==0)
  {
- $sql="INSERT INTO usuario(email, nombre, apellido, telefono, dni,clave) VALUES ('$email','$nombre','$apellido','$telefono','$dni','$clave')";
+ $sql="INSERT INTO usuario(email, nombre, apellido, telefono, dni,roll_usuario,clave,fecha) VALUES ('$email','$nombre','$apellido','$telefono','$dni',1, '$clave',curdate())";
  
  
 $result=mysql_query($sql);
  
  if($result){
- $message = "Cuenta Correctamente Creada";
- } else {
- $message = "Error al ingresar datos de la informacion!";
+ echo"<script>alert('Cuenta creada.');window.location.href=\"index.php\"</script>";
  }
  
 } else {
- $message = "El nombre de usuario ya existe! Por favor, intenta con otro!";
+  echo"<script>alert('Usuario ya registado...');window.location.href=\"register.php\"</script>";
  }
  
-} else {
- $message = "Todos los campos no deben de estar vacios!";
 }
 }
 ?>
  
+<div class="wrapper"  >
+  <h3 style="color: #FFF">Crea tu cuenta</h3>
+  <p style="color: #FFF"> Completando este registro usted obtendra una cuenta de usuario normal. Recuerde que puede
+  solicitar ser usuario premium en cualquier momento y obtener mas beneficios.</p>
 
- 
-<div class="container mregister">
- <div id="login">
- <h1>Registrar</h1>
-<form name="registerform" id="registerform" target="_top" action="intropage.php" method="post" >
- <p>
- <label for="user_login">Nombre <br />
- <input type="text" name="nombre" id="nombre" class="input" size="32" value="" /></label>
- </p>
- 
- <p>
- <label for="user_pass">E-mail<br />
- <input type="email" name="email" id="email" class="input" value="" size="32" /></label>
- </p>
- 
- <p>
- <label for="user_pass">DNI<br />
- <input type="text" name="dni" id="dni" class="input" value="" size="20" /></label>
- </p>
- 
- <p>
- <label for="user_pass">Telefono<br />
- <input type="text" name="telefono" id="telefono" class="input" value="" size="32" /></label>
- </p>
- 
- <p>
- <label for="user_pass">Apellido<br />
- <input type="text" name="apellido" id="apellido" class="input" value="" size="32" /></label>
- </p>
- 
- <p>
- <label for="user_pass">Contraseña<br />
- <input type="text" name="clave" id="clave" class="input" value="" size="32" /></label>
- </p>
- 
-<p class="submit">
- <input type="submit" name="register" id="register" class="button" value="Registrar" />
- </p>
- 
- <p class="regtext">Ya tienes una cuenta? <a href="login.php" target="_top" >Entra Aquí!</a>!</p>
- <?php if (!empty($message)) {echo "<p class=\"error\">" . "Mensaje: ". $message . "</p>";} ?>
-</form>
-<?php 
-include("footer.php");
-?>
- 
- </div>
- </div>
- 
- <?php  ?>
+<form id="registerform" class="registerform" method="post" action="register.php">
+
+    <input  name="nombre" type="text" id="nombre" class="name" placeholder="Name"required="required">
+    <div>
+      <p  style="color: #FFF" class="name-help">Por favor ingrese su nombre.</p>
+    </div>
+    <input name="email" type="email" id="email"class="email" placeholder="Email"required="required">
+     <div>
+      <p  style="color: #FFF" class="email-help">Por favor ingrese su email.</p>
+    </div>
+    
+     <input name="apellido" type="text"id="apellido" class="apellido" placeholder="Apellido"required="required">
+    <div>
+      <p  style="color: #FFF" class="apellido-help">Por favor ingrese su apellido.</p>
+    </div> 
+    <input name="telefono" type="text" id="telefono"class="telefono" placeholder="Telefono"required="required">
+    <div>
+      <p  style="color: #FFF" class="telefono-help">Por favor ingrese su Telefono.</p>
+    </div> 
+    <input  name="dni" type="text"id="dni" class="dni" placeholder="DNI" required>
+    <div>
+      <p  style="color: #FFF" class="dni-help">Por favor ingrese su DNI sin puntos ni espacios</p>
+    </div>
+      <input name="contraseña" type="text" id="contraseña" class="contraseña" placeholder="Contraseña" required="required">
+    <div>
+      <p  style="color: #FFF" class="contraseña-help">Por favor ingrese su contraseña.</p>
+    </div> 
+    <input type="submit" name="register" id="register"class="button" value="Registrarse">
+  
+ <p style="color: #FFF" class="regtext">Ya tienes una cuenta? <a href="login.php" target="_top" >Entra Aquí!</a>!</p>
+
+ </form> </div> 
+ <script type="text/javascript" >
+$(".name").focus(function(){
+  $(".name-help").slideDown(500);
+}).blur(function(){
+  $(".name-help").slideUp(500);
+});
+$(".contraseña").focus(function(){
+  $(".contraseña-help").slideDown(500);
+}).blur(function(){
+  $(".contraseña-help").slideUp(500);
+});
+$(".dni").focus(function(){
+  $(".dni-help").slideDown(500);
+}).blur(function(){
+  $(".dni-help").slideUp(500);
+});
+$(".telefono").focus(function(){
+  $(".telefono-help").slideDown(500);
+}).blur(function(){
+  $(".telefono-help").slideUp(500);
+});
+$(".apellido").focus(function(){
+  $(".apellido-help").slideDown(500);
+}).blur(function(){
+  $(".apellido-help").slideUp(500);
+});
+$(".email").focus(function(){
+  $(".email-help").slideDown(500);
+}).blur(function(){
+  $(".email-help").slideUp(500);
+});
+
+</script>
+
+      
+    
+   </section>
+
+ <footer>
+       <?php include("footer.php"); ?>
+
+        
+   </footer>
+
 </body>
+</html>
+

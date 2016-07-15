@@ -1,91 +1,67 @@
 
-<?php
+<html xmlns="http://www.w3.org/1999/xhtml">
+<?php 
 session_start();
-?>
- 
+require_once("connection.php");
 
 
-<html>
-<head>
-<?php require_once("connection.php");  
 
-     		require_once('recursos.php') ;
-			
-    	?>
-	
-	
-</head>
-<body>
 
-<div align="center">
-	 <h6><img src="imagenes/logova.png" width="345" height="88" ></h6>
-<?php
- 
+
 if(isset($_SESSION["session_username"])){
 
-header("Location: intropage.php");
-}
- 
-if(isset($_POST["login"])){
- 
-	if(!empty($_POST['email']) && !empty($_POST['clave'])) {
-		 $email=$_POST['email'];
-		 $password=$_POST['clave'];
- 
-			$query =mysql_query("SELECT * FROM usuario WHERE email='".$email."' AND clave='".$password."'");
- 
-			$numrows=mysql_num_rows($query);
- 				if($numrows!=0){
- 							while($row=mysql_fetch_assoc($query)){
- 									$dbusername=$row['email'];
- 									$dbpassword=$row['clave'];
-																 }
- 
-							if($email == $dbusername && $password == $dbpassword){
- 
- 										$_SESSION['session_username']=$email; 
- 										header("Location: intropage.php");
-																				 }
-								 } 
- 							else { 
-								$message= "Nombre de usuario ó contraseña invalida!";
-																			 }
-							} 
-				else {
- 					$message = "Todos los campos son requeridos!";
-															}
-}
-     if(isset($_GET['ENVIADO'])){	echo"<h3>Correo enviado correctamente, verifique su bandeja de entrada para poder restablecer su contraseña.</h3>";
-		        			
-		 		}
-?>
- 
+header("Location: index.php");
+}?>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0" />
+<link href="css/login.css" rel="stylesheet" />
 
- <h1>Logueo</h1>
-<form name="loginform" id="loginform" action="" method="POST" target="_top">
- 
- <label for="usuario">Nombre De Usuario<br />
- <input type="text" name="email" id="email" class="input" value="" size="20" /></label>
- 
- 
- <label for="contraseña">Contraseña<br />
- <input type="password" name="clave" id="clave" class="input" value="" size="20" /></label>
- 
- 
- <input type="submit" name="login" class="button" value="Entrar" />
- 
-			 	<a href='olvide.php'>Olvide mi contraseña</a>
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/estilos.css"  />
 
+      <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+</head>
+<?php include("header.php"); ?>
+
+<body background="imagenes/fondo4.jpg">
+  <section class="row">
+    
+  
+   <section class="main container"> 
+          <section class="jumbotron" >
+
+        <div class="container">
+            <h3>Panel de Logueo </h3>
+        </div>      </section>
+
+
+      	<form action="control.php" method="post">
+  <header>Login</header>
+  <label>Usuario <span>*</span></label>
+  <input  type="text" name="email" id="email" required="required"/>
+  <div class="help">escriba su email</div>
+  <label>Contraseña <span>*</span></label>
+  <input type="password" name="clave" id="clave" required="required"/>
+  <div class="help">escriba su contraseña</div>
+  <button>Iniciar Sesion</button>
+  	<label style="float:left">
+  	<a   hidden href="olvide.php" > ¿ Olvidaste tu contraseña ? </a>
+    </label>
 </form>
-  <p class="regtext">No estas registrado? <a href="register.php" target="_top" >Registrate Aquí</a>!</p>
+    
 
- 
-</div>
- <?php include('footer.php');
-				?>
- 
- 
- <?php if (!empty($message)) {echo "<p class=\"error\">" . "Atencion: ". $message . "</p>";}  ?>
- 
+  
+  </section> </section>
+<section class="row" style="bottom: 0px">
+  
+
+</section>
 </body>
 </html>

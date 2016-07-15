@@ -1,10 +1,7 @@
-<div data-role="footer" data-theme="a" data-position="fixed" >
-			
-			<div data-role="controlgroup" data-type="horizontal" style="text-align:center;">
-
-				  Indevelopers
-
-			</div>
-			
-            <a href="ayuda/Usuario.pdf" data-icon="alert" style="text-align:left" >Ayuda</a>
-            </div>	
+    <div class="container">
+          
+          <p  style= " position:relative; color: #FFF;   text-align: center;  font-size: 13px; bottom: 0 "  >
+          Copyright 2016 CouchInn. Todos los Derechos Reservados. Diseño Web y Programación: Indevelopers   <a href="#contacto.php">Contactenos</a></p>
+          
+        </div>
+        
